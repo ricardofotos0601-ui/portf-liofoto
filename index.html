@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ricardo Maia — Fotografia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,400&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #131110;
+    --bg-raised: #1b1816;
+    --ink: #ece5da;
+    --ink-dim: #a89f92;
+    --gold: #c9a24b;
+    --gold-soft: #e7cc8f;
+    --line: #33302c;
+    --serif: 'Fraunces', serif;
+    --sans: 'Work Sans', sans-serif;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:var(--sans);
+    font-weight:300;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;}
+
+  /* ---------- top bar ---------- */
+  .topbar{
+    position:fixed; top:0; left:0; right:0; z-index:50;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:22px clamp(20px,4vw,56px);
+    mix-blend-mode:difference;
+  }
+  .topbar .mark{
+    font-family:var(--serif); font-weight:500; font-size:15px;
+    letter-spacing:.18em; text-transform:uppercase; color:#fff;
+  }
+  .topbar .mark span{color:var(--gold-soft);}
+  .topbar nav a{
+    font-size:12px; letter-spacing:.14em; text-transform:uppercase;
+    color:#fff; text-decoration:none; margin-left:28px;
+  }
+  .topbar nav a:hover{color:var(--gold-soft);}
+
+  /* ---------- hero ---------- */
+  .hero{
+    position:relative;
+    min-height:100svh;
+    display:flex; flex-direction:column; justify-content:flex-end;
+    padding: 0 clamp(20px,4vw,56px) clamp(40px,6vw,80px);
+    overflow:hidden;
+  }
+  .hero-bg{
+    position:absolute; inset:0;
+    background-size:cover; background-position:center 42%;
+    filter:saturate(1.02) contrast(1.03);
+  }
+  .hero-bg::after{
+    content:""; position:absolute; inset:0;
+    background:linear-gradient(180deg, rgba(19,17,16,.15) 0%, rgba(19,17,16,.35) 55%, rgba(19,17,16,.96) 100%);
+  }
+  .hero-content{position:relative; z-index:2; max-width:900px;}
+  .hero-eyebrow{
+    font-size:12px; letter-spacing:.3em; text-transform:uppercase;
+    color:var(--gold-soft); margin-bottom:18px; display:block;
+  }
+  .hero h1{
+    font-family:var(--serif); font-weight:300; font-style:italic;
+    font-size:clamp(42px, 9vw, 108px); line-height:.98;
+    color:#fdf9f2;
+  }
+  .hero h1 b{font-weight:600; font-style:normal; color:var(--gold-soft);}
+  .hero p{
+    margin-top:22px; max-width:520px; font-size:16px; line-height:1.65;
+    color:var(--ink-dim); font-weight:300;
+  }
+  .hero-scroll{
+    position:relative; z-index:2; margin-top:48px;
+    display:flex; align-items:center; gap:14px;
+    font-size:11px; letter-spacing:.2em; text-transform:uppercase; color:var(--ink-dim);
+  }
+  .hero-scroll .line{width:40px; height:1px; background:var(--gold);}
+
+  /* ---------- filters ---------- */
+  .filters-wrap{
+    position:sticky; top:0; z-index:40;
+    background:rgba(19,17,16,.86); backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+    padding: 18px clamp(20px,4vw,56px);
+    display:flex; gap:10px; flex-wrap:wrap;
+  }
+  .filter{
+    font-family:var(--sans); font-size:12px; letter-spacing:.08em;
+    text-transform:uppercase; color:var(--ink-dim);
+    background:transparent; border:1px solid var(--line);
+    padding:9px 18px; border-radius:999px; cursor:pointer;
+    transition:all .25s ease;
+  }
+  .filter:hover{color:var(--ink); border-color:var(--gold);}
+  .filter.active{color:#141210; background:var(--gold-soft); border-color:var(--gold-soft);}
+
+  /* ---------- gallery ---------- */
+  .gallery{
+    padding: clamp(28px,4vw,48px) clamp(20px,4vw,56px) 100px;
+    column-count:1;
+    column-gap:14px;
+  }
+  @media(min-width:640px){ .gallery{column-count:2;} }
+  @media(min-width:980px){ .gallery{column-count:3;} }
+  @media(min-width:1400px){ .gallery{column-count:4;} }
+
+  .ph{
+    break-inside:avoid; margin-bottom:14px; position:relative;
+    overflow:hidden; border-radius:2px; background:var(--bg-raised);
+    cursor:zoom-in;
+    opacity:0; transform:translateY(14px);
+    animation:rise .6s ease forwards;
+  }
+  @keyframes rise{ to{opacity:1; transform:translateY(0);} }
+  .ph img{
+    display:block; width:100%; height:auto;
+    transition:transform .6s cubic-bezier(.2,.7,.2,1), filter .5s ease;
+    filter:saturate(1.0);
+  }
+  .ph:hover img{transform:scale(1.035);}
+  .ph.hide{display:none;}
+
+  .ph::before{
+    content:""; position:absolute; inset:0;
+    background:linear-gradient(180deg, transparent 60%, rgba(0,0,0,.55) 100%);
+    opacity:0; transition:opacity .3s ease; pointer-events:none;
+  }
+  .ph:hover::before{opacity:1;}
+
+  /* ---------- footer ---------- */
+  footer{
+    padding:70px clamp(20px,4vw,56px) 50px;
+    border-top:1px solid var(--line);
+    display:flex; flex-wrap:wrap; gap:24px;
+    justify-content:space-between; align-items:flex-end;
+  }
+  footer .fmark{font-family:var(--serif); font-style:italic; font-size:26px; color:var(--gold-soft);}
+  footer p{color:var(--ink-dim); font-size:13px; max-width:340px; line-height:1.6;}
+  footer .contact{font-size:13px; color:var(--ink-dim);}
+  footer .contact a{color:var(--ink); text-decoration:none; border-bottom:1px solid var(--gold);}
+
+  /* ---------- lightbox ---------- */
+  .lightbox{
+    position:fixed; inset:0; z-index:100; background:rgba(10,9,8,.97);
+    display:none; align-items:center; justify-content:center; padding:5vh 5vw;
+  }
+  .lightbox.open{display:flex;}
+  .lightbox img{max-width:100%; max-height:90vh; object-fit:contain; box-shadow:0 30px 80px rgba(0,0,0,.6);}
+  .lightbox .close, .lightbox .nav-btn{
+    position:fixed; background:none; border:none; color:var(--ink);
+    font-size:28px; cursor:pointer; opacity:.75; transition:opacity .2s;
+  }
+  .lightbox .close:hover, .lightbox .nav-btn:hover{opacity:1;}
+  .lightbox .close{top:26px; right:32px;}
+  .lightbox .prev{left:24px; top:50%; transform:translateY(-50%);}
+  .lightbox .next{right:24px; top:50%; transform:translateY(-50%);}
+
+  ::selection{background:var(--gold); color:#141210;}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="mark">Ricardo <span>Maia</span></div>
+  <nav>
+    <a href="#galeria">Galeria</a>
+    <a href="#contacto">Contacto</a>
+  </nav>
+</div>
+
+<section class="hero">
+  <div class="hero-bg" style="background-image:url('images/IMG_5072.JPG')"></div>
+  <div class="hero-content">
+    <span class="hero-eyebrow">Fotografia · Vila do Conde, Portugal</span>
+    <h1>Luz, movimento<br>e o que fica <b>por contar.</b></h1>
+    <p>Retratos, desporto, carros, paisagens e eventos — capturados como
+    aconteceram, sem encenação a mais. Uma coleção em crescimento.</p>
+  </div>
+  <div class="hero-scroll"><span class="line"></span> Ver a galeria</div>
+</section>
+
+<div class="filters-wrap" id="galeria">
+<button class="filter active" data-filter="all">Tudo</button><button class="filter" data-filter="retratos">Retratos</button><button class="filter" data-filter="paisagens">Paisagens</button><button class="filter" data-filter="desporto">Desporto</button><button class="filter" data-filter="carros">Carros</button><button class="filter" data-filter="eventos">Eventos</button><button class="filter" data-filter="produtos">Produtos</button>
+</div>
+
+<main class="gallery" id="gallery">
+<figure class="ph" data-cat="retratos" style="--ar:1.5013"><img src="images/retratos-001.jpg" loading="lazy" alt=""></figure>
+<figure class="ph" data-cat="retratos" style="--ar:0.6661"><img src="images/retratos-002.jpg" loading="lazy" alt=""></figure>
+<figure class="ph" data-cat="retratos" style="--ar:0.6661"><img src="images/retratos-003.jpg" loading="lazy" alt=""></figure>
+<figure class="ph" data-cat="retratos" style="--ar:0.6661"><img src="images/retratos-004.jpg" loading="lazy" alt=""></figure>
+<figure class="ph" data-cat="retratos" style="--ar:0.6667"><img src="images/retratos-005.jpg" loading="lazy" alt=""></figure>
+<figure class="ph" data-cat="retratos" style="--ar:1.5013"><img src="images/retratos-006.jpg" loading="lazy" alt=""></figure>
+<figure class="ph" data-cat="retratos" style="--ar:0.6661"><img src="images/retratos-007.jpg" loading="lazy" alt=""></figure>
+<figure class="ph" data-cat="retratos" style="--ar:0.6661"><img src="images/retratos-008.jpg" loading="lazy" alt=""></figure>
+<figure class="ph" data-cat="retratos" style="--ar:0.6661"><img src="images/retratos-009.jpg" loading="lazy" alt=""></figure>
+<figure class="ph" data-cat="retratos" style="--ar:1.5013"><img src="images/retratos-010.jpg" loading="lazy" alt=""></figure>
+<figure class="ph" data-cat="retratos" style="--ar:1.5013"><img src="images/retratos-011.jpg" loading="lazy" alt=""></figure>
+<figure class="ph" data-cat="retratos" style="--ar:0.6661"><img src="images/retratos-012.jpg" loading="lazy" alt=""></figure>
+<figure class="ph" data-cat="paisagens" style="--ar:1.5013"><img src="images/rua-013.jpg" loading="lazy" alt=""></figure>
+<figure class="ph" data-cat="paisagens" style="--ar:1.5013"><img src="images/rua-014.jpg" loading="lazy" alt=""></figure>
+<figure class="ph" data-cat="paisagens" style="--ar:1.5013"><img src="images/rua-015.jpg" loading="lazy" alt=""></figure>
+<figure class="ph" data-cat="paisagens" style="--ar:1.5013"><img src="images/rua-016.jpg" loading="lazy" alt=""></figure>
+<figure class="ph" data-cat="paisagens" style="--ar:0.5883"><img src="images/rua-017.jpg" loading="lazy" alt=""></figure>
+<figure class="ph" data-cat="paisagens" style="--ar:0.6572"><img src="images/rua-018.jpg" loading="lazy" alt=""></figure>
+<figure class="ph" data-cat="paisagens" style="--ar:0.6289"><img src="images/rua-019.jpg" loading="lazy" alt=""></figure>
+<figure class="ph" data-cat="paisagens" style="--ar:0.6422"><img src="images/rua-020.jpg" loading="lazy" alt=""></figure>
+<figure class="ph" data-cat="paisagens" style="--ar:0.6661"><img src="images/rua-021.jpg" loading="lazy" alt=""></figure>
+<figure class="ph" data-cat="paisagens" style="--ar:0.6306"><img src="images/rua-022.jpg" loading="lazy" alt=""></figure>
+<figure class="ph" data-cat="paisagens" style="--ar:1.5803"><img src="images/rua-023.jpg" loading="lazy" alt=""></figure>
+<figure class="ph" data-cat="paisagens" style="--ar:0.6961"><img src="images/rua-024.jpg" loading="lazy" alt=""></figure>
+<figure class="ph" data-cat="paisagens" style="--ar:1.5000"><img src="images/rua-025.jpg" loading="lazy" alt=""></figure>
+<figure class="ph" data-cat="paisagens" style="--ar:1.5000"><img src="images/rua-026.jpg" loading="lazy" alt=""></figure>
+<figure class="ph" data-cat="paisagens" style="--ar:1.5000"><img src="images/rua-027.jpg" loading="lazy" alt=""></figure>
+<figure class="ph" data-cat="paisagens" style="--ar:1.5000"><img src="images/rua-028.jpg" loading="lazy" alt=""></figure>
+<figure class="ph" data-cat="paisagens" style="--ar:1.5000"><img src="images/rua-029.jpg" loading="lazy" alt=""></figure>
+<figure class="ph" data-cat="paisagens" style="--ar:1.5000"><img src="images/rua-030.jpg" loading="lazy" alt=""></figure>
+<figure class="ph" data-cat="desporto" style="--ar:1.5013"><img src="images/desporto-031.jpg" loading="lazy" alt=""></figure>
+<figure class="ph" data-cat="desporto" style="--ar:1.5013"><img src="images/desporto-032.jpg" loading="lazy" alt=""></figure>
+<figure class="ph" data-cat="desporto" style="--ar:1.5013"><img src="images/desporto-033.jpg" loading="lazy" alt=""></figure>
+<figure class="ph" data-cat="desporto" style="--ar:1.5013"><img src="images/desporto-034.jpg" loading="lazy" alt=""></figure>
+<figure class="ph" data-cat="desporto" style="--ar:1.5013"><img src="images/desporto-035.jpg" loading="lazy" alt=""></figure>
+<figure class="ph" data-cat="desporto" style="--ar:1.5887"><img src="images/desporto-036.jpg" loading="lazy" alt=""></figure>
+<figure class="ph" data-cat="desporto" style="--ar:1.5013"><img src="images/desporto-037.jpg" loading="lazy" alt=""></figure>
+<figure class="ph" data-cat="desporto" style="--ar:1.5013"><img src="images/desporto-038.jpg" loading="lazy" alt=""></figure>
+<figure class="ph" data-cat="desporto" style="--ar:1.5013"><img src="images/desporto-039.jpg" loading="lazy" alt=""></figure>
+<figure class="ph" data-cat="desporto" style="--ar:1.5013"><img src="images/desporto-040.jpg" loading="lazy" alt=""></figure>
+<figure class="ph" data-cat="desporto" style="--ar:1.5013"><img src="images/desporto-041.jpg" loading="lazy" alt=""></figure>
+<figure class="ph" data-cat="desporto" style="--ar:1.5013"><img src="images/desporto-042.jpg" loading="lazy" alt=""></figure>
+<figure class="ph" data-cat="desporto" style="--ar:1.5013"><img src="images/desporto-043.jpg" loading="lazy" alt=""></figure>
+<figure class="ph" data-cat="desporto" style="--ar:1.5013"><img src="images/desporto-044.jpg" loading="lazy" alt=""></figure>
+<figure class="ph" data-cat="desporto" style="--ar:1.5013"><img src="images/desporto-045.jpg" loading="lazy" alt=""></figure>
+<figure class="ph" data-cat="desporto" style="--ar:1.5013"><img src="images/desporto-046.jpg" loading="lazy" alt=""></figure>
+<figure class="ph" data-cat="desporto" style="--ar:1.4995"><img src="images/desporto-047.jpg" loading="lazy" alt=""></figure>
+<figure class="ph" data-cat="desporto" style="--ar:1.5013"><img src="images/desporto-048.jpg" loading="lazy" alt=""></figure>
+<figure class="ph" data-cat="desporto" style="--ar:1.5013"><img src="images/desporto-049.jpg" loading="lazy" alt=""></figure>
+<figure class="ph" data-cat="desporto" style="--ar:1.5013"><img src="images/desporto-050.jpg" loading="lazy" alt=""></figure>
+<figure class="ph" data-cat="desporto" style="--ar:1.5013"><img src="images/desporto-051.jpg" loading="lazy" alt=""></figure>
+<figure class="ph" data-cat="desporto" style="--ar:1.0465"><img src="images/desporto-052.jpg" loading="lazy" alt=""></figure>
+<figure class="ph" data-cat="desporto" style="--ar:1.5013"><img src="images/desporto-053.jpg" loading="lazy" alt=""></figure>
+<figure class="ph" data-cat="paisagens" style="--ar:1.5013"><img src="iagmes/ruaz.jpg" loading="lazy" alt=""></figure>
+<figure class="ph" data-cat="paisagens" style="--ar:1.5013"><img src="images/ruaz01.jpg" loading="lazy" alt=""></figure>
+<figure class="ph" data-cat="paisagens" style="--ar:1.5013"><img src="images/ruaz02.jpg" loading="lazy" alt=""></figure>
+<figure class="ph" data-cat="paisagens" style="--ar:1.5013"><img src="images/ruaz03.jpg" loading="lazy" alt=""></figure>
+<figure class="ph" data-cat="carros" style="--ar:0.6661"><img src="images/carros-058.jpg" loading="lazy" alt=""></figure>
+<figure class="ph" data-cat="carros" style="--ar:0.6661"><img src="images/carros-059.jpg" loading="lazy" alt=""></figure>
+<figure class="ph" data-cat="carros" style="--ar:1.5013"><img src="images/carros-060.jpg" loading="lazy" alt=""></figure>
+<figure class="ph" data-cat="carros" style="--ar:0.6661"><img src="images/carros-061.jpg" loading="lazy" alt=""></figure>
+<figure class="ph" data-cat="carros" style="--ar:0.5906"><img src="images/carros-062.jpg" loading="lazy" alt=""></figure>
+<figure class="ph" data-cat="carros" style="--ar:0.7500"><img src="images/carros-063.jpg" loading="lazy" alt=""></figure>
+<figure class="ph" data-cat="carros" style="--ar:1.3333"><img src="images/carros-064.jpg" loading="lazy" alt=""></figure>
+<figure class="ph" data-cat="carros" style="--ar:1.3333"><img src="images/carros-065.jpg" loading="lazy" alt=""></figure>
+<figure class="ph" data-cat="carros" style="--ar:0.6663"><img src="images/carros-066.jpg" loading="lazy" alt=""></figure>
+<figure class="ph" data-cat="carros" style="--ar:0.6663"><img src="images/carros-067.jpg" loading="lazy" alt=""></figure>
+<figure class="ph" data-cat="carros" style="--ar:0.6661"><img src="images/carros-068.jpg" loading="lazy" alt=""></figure>
+<figure class="ph" data-cat="carros" style="--ar:0.6661"><img src="images/carros-069.jpg" loading="lazy" alt=""></figure>
+<figure class="ph" data-cat="carros" style="--ar:1.5013"><img src="images/carros-070.jpg" loading="lazy" alt=""></figure>
+<figure class="ph" data-cat="carros" style="--ar:0.6661"><img src="images/carros-071.jpg" loading="lazy" alt=""></figure>
+<figure class="ph" data-cat="carros" style="--ar:0.6661"><img src="images/carros-072.jpg" loading="lazy" alt=""></figure>
+<figure class="ph" data-cat="paisagens" style="--ar:1.5013"><img src="images/viagens-073.jpg" loading="lazy" alt=""></figure>
+<figure class="ph" data-cat="paisagens" style="--ar:0.6694"><img src="images/viagens-074.jpg" loading="lazy" alt=""></figure>
+<figure class="ph" data-cat="paisagens" style="--ar:0.7467"><img src="images/viagens-075.jpg" loading="lazy" alt=""></figure>
+<figure class="ph" data-cat="paisagens" style="--ar:1.5013"><img src="images/viagens-076.jpg" loading="lazy" alt=""></figure>
+<figure class="ph" data-cat="paisagens" style="--ar:1.5013"><img src="images/viagens-077.jpg" loading="lazy" alt=""></figure>
+<figure class="ph" data-cat="retratos" style="--ar:1.5000"><img src="images/viagens-078.jpg" loading="lazy" alt=""></figure>
+<figure class="ph" data-cat="paisagens" style="--ar:1.5000"><img src="images/viagens-079.jpg" loading="lazy" alt=""></figure>
+<figure class="ph" data-cat="paisagens" style="--ar:1.5000"><img src="images/viagens-080.jpg" loading="lazy" alt=""></figure>
+<figure class="ph" data-cat="paisagens" style="--ar:1.5000"><img src="images/viagens-081.jpg" loading="lazy" alt=""></figure>
+<figure class="ph" data-cat="paisagens" style="--ar:1.5000"><img src="images/viagens-082.jpg" loading="lazy" alt=""></figure>
+<figure class="ph" data-cat="paisagens" style="--ar:1.5000"><img src="images/viagens-083.jpg" loading="lazy" alt=""></figure>
+<figure class="ph" data-cat="paisagens" style="--ar:1.5013"><img src="images/viagens-084.jpg" loading="lazy" alt=""></figure>
+<figure class="ph" data-cat="paisagens" style="--ar:0.6661"><img src="images/viagens-085.jpg" loading="lazy" alt=""></figure>
+<figure class="ph" data-cat="eventos" style="--ar:1.5013"><img src="images/eventos-086.jpg" loading="lazy" alt=""></figure>
+<figure class="ph" data-cat="eventos" style="--ar:1.5013"><img src="images/eventos-087.jpg" loading="lazy" alt=""></figure>
+<figure class="ph" data-cat="eventos" style="--ar:1.5013"><img src="images/eventos-088.jpg" loading="lazy" alt=""></figure>
+<figure class="ph" data-cat="eventos" style="--ar:1.5013"><img src="images/eventos-089.jpg" loading="lazy" alt=""></figure>
+<figure class="ph" data-cat="eventos" style="--ar:1.5013"><img src="images/eventos-090.jpg" loading="lazy" alt=""></figure>
+<figure class="ph" data-cat="produtos" style="--ar:1.5000"><img src="images/produto.jpg" loading="lazy" alt=""></figure>
+<figure class="ph" data-cat="produtos" style="--ar:1.5000"><img src="images/produto01.jpg" loading="lazy" alt=""></figure>
+<figure class="ph" data-cat="produtos" style="--ar:1.5000"><img src="images/produto02.jpg" loading="lazy" alt=""></figure>
+<figure class="ph" data-cat="produtos" style="--ar:1.5000"><img src="images/produto03.jpg" loading="lazy" alt=""></figure>
+<figure class="ph" data-cat="produtos" style="--ar:1.5000"><img src="images/produto04.jpg" loading="lazy" alt=""></figure>
+<figure class="ph" data-cat="produtos" style="--ar:1.5000"><img src="images/produto05.jpg" loading="lazy" alt=""></figure>
+<figure class="ph" data-cat="produtos" style="--ar:1.5000"><img src="images/produto06.jpg" loading="lazy" alt=""></figure>
+<figure class="ph" data-cat="produtos" style="--ar:1.5000"><img src="images/produto07.jpg" loading="lazy" alt=""></figure>
+<figure class="ph" data-cat="produtos" style="--ar:1.5000"><img src="images/produto08.jpg" loading="lazy" alt=""></figure>
+<figure class="ph" data-cat="paisagens" style="--ar:1.5000"><img src="images/paisagenz.JPG" loading="lazy" alt=""></figure>
+<figure class="ph" data-cat="paisagens" style="--ar:1.5000"><img src="images/paisagenz02.jpg" loading="lazy" alt=""></figure>
+<figure class="ph" data-cat="retratos" style="--ar:1.5000"><img src="images/paisagenz03.JPG" loading="lazy" alt=""></figure>
+<figure class="ph" data-cat="desporto" style="--ar:1.5000"><img src="images/deporte.jpg" loading="lazy" alt=""></figure>
+<figure class="ph" data-cat="desporto" style="--ar:1.5000"><img src="images/deporte02.JPG" loading="lazy" alt=""></figure>
+<figure class="ph" data-cat="desporto" style="--ar:1.5000"><img src="images/deporte03.JPG" loading="lazy" alt=""></figure>
+<figure class="ph" data-cat="eventos" style="--ar:1.5000"><img src="images/eventoz.jpg" loading="lazy" alt=""></figure>
+<figure class="ph" data-cat="eventos" style="--ar:1.5000"><img src="images/eventoz02.jpg" loading="lazy" alt=""></figure>
+<figure class="ph" data-cat="eventos" style="--ar:1.5000"><img src="images/eventoz03.jpg" loading="lazy" alt=""></figure>
+<figure class="ph" data-cat="eventos" style="--ar:1.5000"><img src="images/carnaval-016.jpg" loading="lazy" alt=""></figure>
+<figure class="ph" data-cat="eventos" style="--ar:1.5000"><img src="images/carnaval-028.jpg" loading="lazy" alt=""></figure>
+<figure class="ph" data-cat="eventos" style="--ar:1.5000"><img src="images/carnaval-039.jpg" loading="lazy" alt=""></figure>
+<figure class="ph" data-cat="paisagens" style="--ar:1.5013"><img src="images/pai.JPG" loading="lazy" alt=""></figure>
+<figure class="ph" data-cat="paisagens" style="--ar:1.5013"><img src="images/pai02.JPG" loading="lazy" alt=""></figure>
+<figure class="ph" data-cat="paisagens" style="--ar:1.5013"><img src="images/pai03.JPG" loading="lazy" alt=""></figure>
+<figure class="ph" data-cat="paisagens" style="--ar:1.5013"><img src="images/pai04.JPG" loading="lazy" alt=""></figure>
+<figure class="ph" data-cat="retratos" style="--ar:0.6661"><img src="images/re.JPG" loading="lazy" alt=""></figure>
+<figure class="ph" data-cat="retratos" style="--ar:0.6661"><img src="images/re02.JPG" loading="lazy" alt=""></figure>
+<figure class="ph" data-cat="retratos" style="--ar:0.6661"><img src="images/re03.JPG" loading="lazy" alt=""></figure>
+<figure class="ph" data-cat="retratos" style="--ar:0.6661"><img src="images/re05.JPG" loading="lazy" alt=""></figure>
+<figure class="ph" data-cat="retratos" style="--ar:0.6661"><img src="images/re06.JPG" loading="lazy" alt=""></figure>
+</main>
+
+<footer id="contacto">
+  <div>
+    <div class="fmark">Ricardo Maia</div>
+    <p>Fotógrafo de Vila do Conde, um pouco por todo o Portugal —
+    desde bancadas de futsal a belas paisagens.</p>
+  </div>
+  <div class="contact">
+    Interessado num trabalho?<br>
+    <a href="mailto:ricardomaia060105@gmail.com">ricardomaia060105@gmail.com</a><p>
+    Instagram:<br>
+    <a href="https://instagram.com/ricardomaia_fotografo" target="_blank" rel="noopener">@ricardomaia_fotografo</a>
+  </div>
+</footer>
+
+<div class="lightbox" id="lightbox">
+  <button class="close" id="lbClose">&times;</button>
+  <button class="nav-btn prev" id="lbPrev">&#8249;</button>
+  <img id="lbImg" src="" alt="">
+  <button class="nav-btn next" id="lbNext">&#8250;</button>
+</div>
+
+<script>
+  // filtering
+  const filters = document.querySelectorAll('.filter');
+  const photos = document.querySelectorAll('.ph');
+  filters.forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      filters.forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      const f = btn.dataset.filter;
+      photos.forEach(p=>{
+        p.classList.toggle('hide', f !== 'all' && p.dataset.cat !== f);
+      });
+    });
+  });
+
+  // lightbox
+  const lb = document.getElementById('lightbox');
+  const lbImg = document.getElementById('lbImg');
+  let visibleList = [];
+  let currentIndex = 0;
+
+  function refreshVisible(){
+    visibleList = Array.from(document.querySelectorAll('.ph:not(.hide) img'));
+  }
+
+  function openLightbox(imgEl){
+    refreshVisible();
+    currentIndex = visibleList.indexOf(imgEl);
+    lbImg.src = imgEl.src;
+    lb.classList.add('open');
+  }
+  function showIndex(i){
+    if(!visibleList.length) return;
+    currentIndex = (i + visibleList.length) % visibleList.length;
+    lbImg.src = visibleList[currentIndex].src;
+  }
+
+  photos.forEach(p=>{
+    p.addEventListener('click', ()=> openLightbox(p.querySelector('img')));
+  });
+  document.getElementById('lbClose').addEventListener('click', ()=> lb.classList.remove('open'));
+  document.getElementById('lbPrev').addEventListener('click', ()=> showIndex(currentIndex-1));
+  document.getElementById('lbNext').addEventListener('click', ()=> showIndex(currentIndex+1));
+  lb.addEventListener('click', (e)=>{ if(e.target === lb) lb.classList.remove('open'); });
+  document.addEventListener('keydown', (e)=>{
+    if(!lb.classList.contains('open')) return;
+    if(e.key === 'Escape') lb.classList.remove('open');
+    if(e.key === 'ArrowRight') showIndex(currentIndex+1);
+    if(e.key === 'ArrowLeft') showIndex(currentIndex-1);
+  });
+
+  // stagger animation delay
+  photos.forEach((p,i)=>{ p.style.animationDelay = (i%12 * 0.04) + 's'; });
+</script>
+
+</body>
+</html>
