@@ -40,6 +40,7 @@
   .topbar .mark{
     font-family:var(--serif); font-weight:500; font-size:20px;
     letter-spacing:.18em; text-transform:uppercase; color:#fff;
+    text-decoration:none; cursor:pointer; background:none; border:none;
   }
   .topbar .mark span{color:var(--gold-soft);}
   .topbar nav a{
@@ -91,20 +92,26 @@
   .hero-scroll .line{width:40px; height:1px; background:var(--gold);}
 
   /* ---------- filters ---------- */
-  .filters-wrap{
-    position:sticky; top:0; z-index:40;
-    background:rgba(19,17,16,.86); backdrop-filter:blur(10px);
-    border-bottom:1px solid var(--line);
-    padding: 18px clamp(20px,4vw,56px);
-    display:flex; gap:10px; flex-wrap:wrap;
-  }
-  .filter{
+ .filters-wrap{
+  position:sticky; top:var(--topbar-h, 78px); z-index:40;
+  background:transparent;
+  padding: 18px clamp(20px,4vw,56px);
+  display:flex; gap:10px; flex-wrap:wrap;
+  transition:opacity .2s ease;
+}
+.filters-wrap.filters-hidden{
+  display:none;
+}
+.filter{
     font-family:var(--sans); font-size:12px; letter-spacing:.08em;
     text-transform:uppercase; color:var(--ink-dim);
-    background:transparent; border:1px solid var(--line);
+    background:rgba(19,17,16,.55); border:1px solid var(--line);
     padding:9px 18px; border-radius:999px; cursor:pointer;
     transition:all .25s ease;
+    backdrop-filter:blur(4px);
   }
+  .filter:hover{color:var(--ink); border-color:var(--gold); background:rgba(19,17,16,.7);}
+  .filter.active{color:#141210; background:var(--gold-soft); border-color:var(--gold-soft);}
   .filter:hover{color:var(--ink); border-color:var(--gold);}
   .filter.active{color:#141210; background:var(--gold-soft); border-color:var(--gold-soft);}
 
@@ -113,6 +120,7 @@
     padding: clamp(28px,4vw,48px) clamp(20px,4vw,56px) 100px;
     column-count:1;
     column-gap:14px;
+    scroll-margin-top:var(--topbar-h, 78px);
   }
   @media(min-width:640px){ .gallery{column-count:2;} }
   @media(min-width:980px){ .gallery{column-count:3;} }
@@ -384,7 +392,7 @@
 <body>
 
 <div class="topbar">
-  <div class="mark">Ricardo <span>Maia</span></div>
+  <button class="mark" id="logoHome">Ricardo <span>Maia</span></button>
   <nav>
     <a href="#sobre">Sobre</a>
     <a href="#galeria">Galeria</a>
@@ -392,7 +400,7 @@
   </nav>
 </div>
 
-<section class="hero">
+<section class="hero" id="topo">
   <div class="hero-bg" style="background-image:url('images/ruaz03.jpg')"></div>
   <div class="hero-content">
     <span class="hero-eyebrow">Fotografia · Vila do Conde, Portugal</span>
@@ -674,9 +682,17 @@
 </div>
 
 <script>
+  // logo -> volta ao topo da página
+  document.getElementById('logoHome').addEventListener('click', ()=>{
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
   // filtering
+  const filtersWrap = document.querySelector('.filters-wrap');
   const filters = document.querySelectorAll('.filter');
   const photos = document.querySelectorAll('.ph');
+  const galleryEl = document.getElementById('gallery');
+
   filters.forEach(btn=>{
     btn.addEventListener('click', ()=>{
       filters.forEach(b=>b.classList.remove('active'));
@@ -685,8 +701,19 @@
       photos.forEach(p=>{
         p.classList.toggle('hide', f !== 'all' && p.dataset.cat !== f);
       });
+      // sobe até ao início da galeria (por baixo dos filtros/topbar)
+      galleryEl.scrollIntoView({ behavior:'smooth', block:'start' });
     });
   });
+
+  // esconde os filtros de categoria quando a secção de contacto está visível
+  const contactoSection = document.getElementById('contacto');
+  const filtersObserver = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      filtersWrap.classList.toggle('filters-hidden', entry.isIntersecting);
+    });
+  }, { threshold: 0, rootMargin: '-40% 0px -40% 0px' });
+  filtersObserver.observe(contactoSection);
 
   // lightbox
   const lb = document.getElementById('lightbox');
@@ -799,6 +826,13 @@
       cformSubmit.textContent = "Enviar mensagem";
     }
   });
+  // ajusta a barra de filtros para colar exatamente por baixo da topbar
+  function ajustarTopbarHeight(){
+    const topbar = document.querySelector('.topbar');
+    document.documentElement.style.setProperty('--topbar-h', topbar.offsetHeight + 'px');
+  }
+  ajustarTopbarHeight();
+  window.addEventListener('resize', ajustarTopbarHeight);
 </script>
 
 </body>
