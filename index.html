@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-PT">
 <head>
@@ -80,11 +81,14 @@
     margin-top:22px; max-width:520px; font-size:16px; line-height:1.65;
     color:var(--ink-dim); font-weight:300;
   }
-  .hero-scroll{
+ .hero-scroll{
     position:relative; z-index:2; margin-top:48px;
     display:flex; align-items:center; gap:14px;
     font-size:11px; letter-spacing:.2em; text-transform:uppercase; color:var(--ink-dim);
-  }
+    text-decoration:none; cursor:pointer; width:fit-content;
+    transition:color .25s ease;
+}
+.hero-scroll:hover{color:var(--gold-soft);}
   .hero-scroll .line{width:40px; height:1px; background:var(--gold);}
 
   /* ---------- filters ---------- */
@@ -397,12 +401,12 @@
     <p>Retratos, desporto, carros, paisagens e eventos — capturados como
     aconteceram, sem encenação a mais. Uma coleção em crescimento.</p>
   </div>
-  <div class="hero-scroll"><span class="line"></span> Ver a galeria</div>
+  <a class="hero-scroll" href="#galeria"><span class="line"></span> Ver a galeria</a>
 </section>
 
 <section class="about" id="sobre">
   <div class="about-photo">
-    <img src="images/re.JPG" alt="Ricardo Maia, fotógrafo, em ação durante uma sessão">
+    <img src="images/fotos minhas-4.JPG" alt="Ricardo Maia, fotógrafo, em ação durante uma sessão">
   </div>
   <div class="about-text">
     <span class="hero-eyebrow">Sobre mim</span>
@@ -416,7 +420,7 @@
     futsal cheia de adrenalina ou um retrato mais calmo em estúdio.</p>
     <div class="about-stats">
       <div class="stat"><b>5+</b><span>Categorias trabalhadas</span></div>
-      <div class="stat"><b>100+</b><span>Sessões e eventos</span></div>
+      <div class="stat"><b>20+</b><span>Sessões e eventos</span></div>
       <div class="stat"><b>PT</b><span>Disponível em todo o país</span></div>
     </div>
   </div>
