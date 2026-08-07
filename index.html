@@ -444,8 +444,8 @@
         <textarea id="cf-message" name="message" rows="4" placeholder="Conte-me um pouco sobre o que precisa..." required></textarea>
       </div>
 
-      <button type="submit" class="cform-submit">Enviar mensagem</button>
-      <p class="cform-note" id="cformNote">Ao enviar, o seu cliente de email abrirá com a mensagem pronta a enviar.</p>
+      <button type="submit" class="cform-submit" id="cformSubmit">Enviar mensagem</button>
+      <p class="cform-note" id="cformNote">Os seus dados são enviados diretamente, sem abrir o seu email.</p>
     </form>
   </div>
 
@@ -532,17 +532,24 @@
   // stagger animation delay
   photos.forEach((p,i)=>{ p.style.animationDelay = (i%12 * 0.04) + 's'; });
 
-  // ---------- contact form ----------
-  // Este site é estático (sem servidor), por isso o formulário abre o
-  // cliente de email do visitante com a mensagem já preenchida (mailto).
-  // Para receber as mensagens diretamente sem abrir o email do visitante,
-  // troca este bloco por um serviço como o Formspree (ver instruções no chat).
-  const YOUR_EMAIL = "ricardomaia060105@gmail.com";
+  // ---------- contact form (envio automático via Web3Forms) ----------
+  // O GitHub Pages só serve ficheiros estáticos, não corre servidor próprio.
+  // O Web3Forms recebe o pedido diretamente do browser do visitante e
+  // envia-o para o teu email — não precisas de nenhum servidor.
+  //
+  // COMO ATIVAR (2 minutos, grátis):
+  // 1. Vai a https://web3forms.com e regista o teu email.
+  // 2. Vais receber uma "Access Key" (um código tipo abc123-...).
+  // 3. Cola esse código na linha abaixo, substituindo o texto entre aspas.
+  const WEB3FORMS_ACCESS_KEY = "15ab006d-f49e-488b-8451-2f592c9ba221";
+
   const contactForm = document.getElementById('contactForm');
   const cformNote = document.getElementById('cformNote');
+  const cformSubmit = document.getElementById('cformSubmit');
 
-  contactForm.addEventListener('submit', function(e){
+  contactForm.addEventListener('submit', async function(e){
     e.preventDefault();
+
     const name = document.getElementById('cf-name').value.trim();
     const email = document.getElementById('cf-email').value.trim();
     const type = document.getElementById('cf-type').value;
@@ -555,23 +562,47 @@
       return;
     }
 
-    const subject = `Novo pedido de contacto — ${type || 'Fotografia'} (${name})`;
-    const bodyLines = [
-      `Nome: ${name}`,
-      `Email: ${email}`,
-      `Tipo de serviço: ${type}`,
-      date ? `Data prevista: ${date}` : null,
-      ``,
-      `Mensagem:`,
-      message
-    ].filter(Boolean);
+    if(WEB3FORMS_ACCESS_KEY === "COLA_AQUI_A_TUA_ACCESS_KEY"){
+      cformNote.textContent = "Formulário ainda não está ligado — falta a Access Key (ver comentário no código).";
+      cformNote.classList.remove('ok');
+      return;
+    }
 
-    const mailtoUrl = `mailto:${YOUR_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyLines.join('\n'))}`;
-    window.location.href = mailtoUrl;
+    cformSubmit.disabled = true;
+    cformSubmit.textContent = "A enviar...";
+    cformNote.textContent = "";
 
-    cformNote.textContent = "A abrir o seu email... obrigado pelo contacto!";
-    cformNote.classList.add('ok');
-    contactForm.reset();
+    try{
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "Accept": "application/json" },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_ACCESS_KEY,
+          subject: `Novo pedido de contacto — ${type || 'Fotografia'} (${name})`,
+          from_name: "Site Ricardo Maia Fotografia",
+          name: name,
+          email: email,
+          "Tipo de serviço": type,
+          "Data prevista": date || "não indicada",
+          message: message
+        })
+      });
+      const data = await res.json();
+
+      if(data.success){
+        cformNote.textContent = "Mensagem enviada com sucesso — obrigado pelo contacto!";
+        cformNote.classList.add('ok');
+        contactForm.reset();
+      } else {
+        throw new Error(data.message || "Erro desconhecido");
+      }
+    } catch(err){
+      cformNote.textContent = "Não foi possível enviar agora. Tente novamente ou escreva para ricardomaia060105@gmail.com.";
+      cformNote.classList.remove('ok');
+    } finally {
+      cformSubmit.disabled = false;
+      cformSubmit.textContent = "Enviar mensagem";
+    }
   });
 </script>
 
