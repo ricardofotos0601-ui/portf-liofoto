@@ -104,6 +104,25 @@
 .hero-scroll:hover{color:var(--gold-soft);}
   .hero-scroll .line{width:40px; height:1px; background:var(--gold);}
 
+  /* ---------- hero CTAs ---------- */
+  .hero-ctas{
+    position:relative; z-index:2; margin-top:40px;
+    display:flex; flex-wrap:wrap; gap:16px;
+  }
+  .hero-btn{
+    font-family:var(--sans); font-size:12px; letter-spacing:.14em; text-transform:uppercase;
+    text-decoration:none; padding:15px 30px; border-radius:999px;
+    transition:all .25s ease; cursor:pointer; display:inline-flex; align-items:center; gap:10px;
+  }
+  .hero-btn.primary{
+    color:#141210; background:var(--gold-soft); border:1px solid var(--gold-soft);
+  }
+  .hero-btn.primary:hover{background:transparent; color:var(--gold-soft);}
+  .hero-btn.secondary{
+    color:var(--ink); background:transparent; border:1px solid var(--line);
+  }
+  .hero-btn.secondary:hover{border-color:var(--gold); color:var(--gold-soft);}
+
   /* ---------- filters ---------- */
  .filters-wrap{
   position:sticky; top:var(--topbar-h, 78px); z-index:40;
@@ -211,6 +230,148 @@
     display:block; margin-top:8px; font-size:11px; letter-spacing:.1em;
     text-transform:uppercase; color:var(--ink-dim);
   }
+
+  /* ---------- case studies ---------- */
+  .cases{
+    padding: clamp(70px,9vw,120px) clamp(20px,4vw,56px);
+    border-bottom:1px solid var(--line);
+  }
+  .cases-head{max-width:640px; margin-bottom:clamp(40px,6vw,64px);}
+  .cases-head h2{
+    font-family:var(--serif); font-weight:300; font-style:italic;
+    font-size:clamp(30px,4.5vw,48px); line-height:1.08; color:#fdf9f2;
+    margin-bottom:16px;
+  }
+  .cases-head h2 b{font-weight:600; font-style:normal; color:var(--gold-soft);}
+  .cases-head p{color:var(--ink-dim); font-size:15.5px; line-height:1.7;}
+  .case{
+    display:grid; grid-template-columns: 1.1fr .9fr; gap: clamp(28px,4vw,56px);
+    align-items:center; margin-bottom: clamp(56px,7vw,90px);
+  }
+  .case:last-child{margin-bottom:0;}
+  .case.reverse{grid-template-columns: .9fr 1.1fr;}
+  .case.reverse .case-photos{order:2;}
+  .case.reverse .case-text{order:1;}
+  @media(max-width:860px){
+    .case, .case.reverse{grid-template-columns:1fr;}
+    .case.reverse .case-photos, .case.reverse .case-text{order:initial;}
+  }
+  .case-photos{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:8px;
+  }
+  .case-photos img{
+    width:100%; height:100%; object-fit:cover; display:block;
+    border-radius:2px; aspect-ratio:1/1; background:var(--bg-raised);
+  }
+  .case-photos .tall{grid-row:span 2; aspect-ratio:.66/1;}
+  .case-text .hero-eyebrow{margin-bottom:14px;}
+  .case-text h3{
+    font-family:var(--serif); font-weight:300; font-style:italic;
+    font-size:clamp(22px,3vw,30px); color:#fdf9f2; margin-bottom:14px;
+  }
+  .case-text p{color:var(--ink-dim); font-size:15px; line-height:1.75;}
+
+  /* ---------- pricing ---------- */
+  .pricing{
+    padding: clamp(70px,9vw,120px) clamp(20px,4vw,56px);
+    border-bottom:1px solid var(--line);
+    background:
+      radial-gradient(1000px 500px at 10% 0%, rgba(201,162,75,.06), transparent 60%),
+      var(--bg-raised);
+  }
+  .pricing-head{max-width:640px; margin-bottom:clamp(40px,6vw,56px);}
+  .pricing-head h2{
+    font-family:var(--serif); font-weight:300; font-style:italic;
+    font-size:clamp(30px,4.5vw,48px); line-height:1.08; color:#fdf9f2;
+    margin-bottom:16px;
+  }
+  .pricing-head h2 b{font-weight:600; font-style:normal; color:var(--gold-soft);}
+  .pricing-head p{color:var(--ink-dim); font-size:15.5px; line-height:1.7;}
+  .pricing-grid{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:20px;
+  }
+  @media(max-width:860px){ .pricing-grid{grid-template-columns:1fr; } }
+  .price-card{
+    background:var(--bg); border:1px solid var(--line); border-radius:4px;
+    padding: 30px 26px; transition:border-color .25s ease;
+  }
+  .price-card:hover{border-color:var(--gold);}
+  .price-card h3{
+    font-family:var(--serif); font-style:italic; font-weight:500;
+    font-size:20px; color:#fdf9f2; margin-bottom:10px;
+  }
+  .price-card .price{
+    font-family:var(--serif); font-weight:600; font-size:28px; color:var(--gold-soft);
+    margin-bottom:10px;
+  }
+  .price-card .price span{
+    font-family:var(--sans); font-weight:300; font-size:12px; color:var(--ink-dim);
+    text-transform:uppercase; letter-spacing:.08em; margin-left:4px;
+  }
+  .price-card p{color:var(--ink-dim); font-size:14px; line-height:1.65;}
+  .pricing-note{margin-top:26px; font-size:13px; color:var(--ink-dim);}
+
+  /* ---------- testimonials ---------- */
+  .testimonials{
+    padding: clamp(70px,9vw,120px) clamp(20px,4vw,56px);
+    border-bottom:1px solid var(--line);
+  }
+  .testimonials-head{max-width:640px; margin-bottom:clamp(40px,6vw,56px);}
+  .testimonials-head h2{
+    font-family:var(--serif); font-weight:300; font-style:italic;
+    font-size:clamp(30px,4.5vw,48px); line-height:1.08; color:#fdf9f2;
+  }
+  .testimonials-head h2 b{font-weight:600; font-style:normal; color:var(--gold-soft);}
+  .testi-grid{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:24px;
+  }
+  @media(max-width:860px){ .testi-grid{grid-template-columns:1fr; } }
+  .testi-card{
+    background:var(--bg-raised); border:1px solid var(--line); border-radius:4px;
+    padding: 32px 28px; display:flex; flex-direction:column;
+  }
+  .testi-quote{
+    font-family:var(--serif); font-style:italic; font-size:18px; line-height:1.5;
+    color:#fdf9f2; margin-bottom:24px; flex-grow:1;
+  }
+  .testi-quote::before{content:'"'; color:var(--gold);}
+  .testi-quote::after{content:'"'; color:var(--gold);}
+  .testi-author{
+    display:flex; flex-direction:column; gap:2px;
+    padding-top:16px; border-top:1px solid var(--line);
+  }
+  .testi-author b{font-size:14px; color:var(--ink); font-weight:500;}
+  .testi-author span{font-size:12px; color:var(--gold-soft); text-transform:uppercase; letter-spacing:.06em;}
+
+  /* ---------- faq ---------- */
+  .faq{
+    padding: clamp(70px,9vw,120px) clamp(20px,4vw,56px);
+    border-bottom:1px solid var(--line);
+    max-width:880px;
+  }
+  .faq-head{margin-bottom:clamp(36px,5vw,50px);}
+  .faq-head h2{
+    font-family:var(--serif); font-weight:300; font-style:italic;
+    font-size:clamp(30px,4.5vw,48px); line-height:1.08; color:#fdf9f2;
+  }
+  .faq-head h2 b{font-weight:600; font-style:normal; color:var(--gold-soft);}
+  .faq-item{border-top:1px solid var(--line);}
+  .faq-item:last-child{border-bottom:1px solid var(--line);}
+  .faq-q{
+    width:100%; text-align:left; background:none; border:none; cursor:pointer;
+    padding:22px 0; display:flex; align-items:center; justify-content:space-between;
+    gap:20px; color:var(--ink); font-family:var(--sans); font-size:16px; font-weight:400;
+  }
+  .faq-q .plus{
+    font-family:var(--serif); font-size:22px; color:var(--gold-soft);
+    transition:transform .25s ease; flex-shrink:0;
+  }
+  .faq-item.open .faq-q .plus{transform:rotate(45deg);}
+  .faq-a{
+    max-height:0; overflow:hidden; transition:max-height .3s ease;
+  }
+  .faq-a p{color:var(--ink-dim); font-size:14.5px; line-height:1.7; padding-bottom:22px; max-width:640px;}
+  .faq-item.open .faq-a{max-height:200px;}
 
   /* ---------- instagram feed ---------- */
   .insta{
@@ -424,8 +585,11 @@
     <h1>Luz, movimento<br>e o que fica <b>por contar.</b></h1>
     <p>Retratos, desporto, carros, paisagens e eventos — capturados como
     aconteceram, sem encenação a mais. Uma coleção em crescimento.</p>
+    <div class="hero-ctas">
+      <a class="hero-btn primary" href="#contacto">Pedir orçamento</a>
+      <a class="hero-btn secondary" href="#galeria">Ver a galeria</a>
+    </div>
   </div>
-  <a class="hero-scroll" href="#galeria"><span class="line"></span> Ver a galeria</a>
 </section>
 
 <section class="about" id="sobre">
@@ -455,125 +619,246 @@
 </div>
 
 <main class="gallery" id="gallery">
-<figure class="ph" data-cat="retratos" style="--ar:1.5013"><img src="images/retratos-001.webp" loading="lazy" decoding="async" alt="Fotografia de retrato"></figure>
-<figure class="ph" data-cat="retratos" style="--ar:0.6661"><img src="images/retratos-002.webp" loading="lazy" decoding="async" alt="Fotografia de retrato"></figure>
-<figure class="ph" data-cat="retratos" style="--ar:0.6661"><img src="images/retratos-003.webp" loading="lazy" decoding="async" alt="Fotografia de retrato"></figure>
-<figure class="ph" data-cat="retratos" style="--ar:0.6661"><img src="images/retratos-004.webp" loading="lazy" decoding="async" alt="Fotografia de retrato"></figure>
-<figure class="ph" data-cat="retratos" style="--ar:0.6667"><img src="images/retratos-005.webp" loading="lazy" decoding="async" alt="Fotografia de retrato"></figure>
-<figure class="ph" data-cat="retratos" style="--ar:1.5013"><img src="images/retratos-006.webp" loading="lazy" decoding="async" alt="Fotografia de retrato"></figure>
-<figure class="ph" data-cat="retratos" style="--ar:0.6661"><img src="images/retratos-007.webp" loading="lazy" decoding="async" alt="Fotografia de retrato"></figure>
-<figure class="ph" data-cat="retratos" style="--ar:0.6661"><img src="images/retratos-008.webp" loading="lazy" decoding="async" alt="Fotografia de retrato"></figure>
-<figure class="ph" data-cat="retratos" style="--ar:1.5013"><img src="images/retratos-010.webp" loading="lazy" decoding="async" alt="Fotografia de retrato"></figure>
-<figure class="ph" data-cat="retratos" style="--ar:1.5013"><img src="images/retratos-011.webp" loading="lazy" decoding="async" alt="Fotografia de retrato"></figure>
-<figure class="ph" data-cat="retratos" style="--ar:0.6661"><img src="images/retratos-012.webp" loading="lazy" decoding="async" alt="Fotografia de retrato"></figure>
-<figure class="ph" data-cat="paisagens" style="--ar:1.5013"><img src="images/rua-013.webp" loading="lazy" decoding="async" alt="Fotografia de paisagem"></figure>
-<figure class="ph" data-cat="paisagens" style="--ar:1.5013"><img src="images/rua-014.webp" loading="lazy" decoding="async" alt="Fotografia de paisagem"></figure>
-<figure class="ph" data-cat="paisagens" style="--ar:1.5013"><img src="images/rua-015.webp" loading="lazy" decoding="async" alt="Fotografia de paisagem"></figure>
-<figure class="ph" data-cat="paisagens" style="--ar:1.5013"><img src="images/rua-016.webp" loading="lazy" decoding="async" alt="Fotografia de paisagem"></figure>
-<figure class="ph" data-cat="paisagens" style="--ar:0.5883"><img src="images/rua-017.webp" loading="lazy" decoding="async" alt="Fotografia de paisagem"></figure>
-<figure class="ph" data-cat="paisagens" style="--ar:0.6572"><img src="images/rua-018.webp" loading="lazy" decoding="async" alt="Fotografia de paisagem"></figure>
-<figure class="ph" data-cat="paisagens" style="--ar:0.6289"><img src="images/rua-019.webp" loading="lazy" decoding="async" alt="Fotografia de paisagem"></figure>
-<figure class="ph" data-cat="paisagens" style="--ar:0.6422"><img src="images/rua-020.webp" loading="lazy" decoding="async" alt="Fotografia de paisagem"></figure>
-<figure class="ph" data-cat="paisagens" style="--ar:0.6661"><img src="images/rua-021.webp" loading="lazy" decoding="async" alt="Fotografia de paisagem"></figure>
-<figure class="ph" data-cat="paisagens" style="--ar:0.6306"><img src="images/rua-022.webp" loading="lazy" decoding="async" alt="Fotografia de paisagem"></figure>
-<figure class="ph" data-cat="paisagens" style="--ar:1.5803"><img src="images/rua-023.webp" loading="lazy" decoding="async" alt="Fotografia de paisagem"></figure>
-<figure class="ph" data-cat="paisagens" style="--ar:0.6961"><img src="images/rua-024.webp" loading="lazy" decoding="async" alt="Fotografia de paisagem"></figure>
-<figure class="ph" data-cat="paisagens" style="--ar:1.5000"><img src="images/rua-025.webp" loading="lazy" decoding="async" alt="Fotografia de paisagem"></figure>
-<figure class="ph" data-cat="paisagens" style="--ar:1.5000"><img src="images/rua-026.webp" loading="lazy" decoding="async" alt="Fotografia de paisagem"></figure>
-<figure class="ph" data-cat="paisagens" style="--ar:1.5000"><img src="images/rua-027.webp" loading="lazy" decoding="async" alt="Fotografia de paisagem"></figure>
-<figure class="ph" data-cat="paisagens" style="--ar:1.5000"><img src="images/rua-028.webp" loading="lazy" decoding="async" alt="Fotografia de paisagem"></figure>
-<figure class="ph" data-cat="paisagens" style="--ar:1.5000"><img src="images/rua-029.webp" loading="lazy" decoding="async" alt="Fotografia de paisagem"></figure>
-<figure class="ph" data-cat="paisagens" style="--ar:1.5000"><img src="images/rua-030.webp" loading="lazy" decoding="async" alt="Fotografia de paisagem"></figure>
-<figure class="ph" data-cat="desporto" style="--ar:1.5013"><img src="images/desporto-031.webp" loading="lazy" decoding="async" alt="Fotografia de desporto"></figure>
-<figure class="ph" data-cat="desporto" style="--ar:1.5013"><img src="images/desporto-032.webp" loading="lazy" decoding="async" alt="Fotografia de desporto"></figure>
-<figure class="ph" data-cat="desporto" style="--ar:1.5013"><img src="images/desporto-033.webp" loading="lazy" decoding="async" alt="Fotografia de desporto"></figure>
-<figure class="ph" data-cat="desporto" style="--ar:1.5013"><img src="images/desporto-034.webp" loading="lazy" decoding="async" alt="Fotografia de desporto"></figure>
-<figure class="ph" data-cat="desporto" style="--ar:1.5013"><img src="images/desporto-035.webp" loading="lazy" decoding="async" alt="Fotografia de desporto"></figure>
-<figure class="ph" data-cat="desporto" style="--ar:1.5887"><img src="images/desporto-036.webp" loading="lazy" decoding="async" alt="Fotografia de desporto"></figure>
-<figure class="ph" data-cat="desporto" style="--ar:1.5013"><img src="images/desporto-037.webp" loading="lazy" decoding="async" alt="Fotografia de desporto"></figure>
-<figure class="ph" data-cat="desporto" style="--ar:1.5013"><img src="images/desporto-038.webp" loading="lazy" decoding="async" alt="Fotografia de desporto"></figure>
-<figure class="ph" data-cat="desporto" style="--ar:1.5013"><img src="images/desporto-039.webp" loading="lazy" decoding="async" alt="Fotografia de desporto"></figure>
-<figure class="ph" data-cat="desporto" style="--ar:1.5013"><img src="images/desporto-040.webp" loading="lazy" decoding="async" alt="Fotografia de desporto"></figure>
-<figure class="ph" data-cat="desporto" style="--ar:1.5013"><img src="images/desporto-041.webp" loading="lazy" decoding="async" alt="Fotografia de desporto"></figure>
-<figure class="ph" data-cat="desporto" style="--ar:1.5013"><img src="images/desporto-042.webp" loading="lazy" decoding="async" alt="Fotografia de desporto"></figure>
-<figure class="ph" data-cat="desporto" style="--ar:1.5013"><img src="images/desporto-043.webp" loading="lazy" decoding="async" alt="Fotografia de desporto"></figure>
-<figure class="ph" data-cat="desporto" style="--ar:1.5013"><img src="images/desporto-044.webp" loading="lazy" decoding="async" alt="Fotografia de desporto"></figure>
-<figure class="ph" data-cat="desporto" style="--ar:1.5013"><img src="images/desporto-045.webp" loading="lazy" decoding="async" alt="Fotografia de desporto"></figure>
-<figure class="ph" data-cat="desporto" style="--ar:1.5013"><img src="images/desporto-046.webp" loading="lazy" decoding="async" alt="Fotografia de desporto"></figure>
-<figure class="ph" data-cat="desporto" style="--ar:1.4995"><img src="images/desporto-047.webp" loading="lazy" decoding="async" alt="Fotografia de desporto"></figure>
-<figure class="ph" data-cat="desporto" style="--ar:1.5013"><img src="images/desporto-048.webp" loading="lazy" decoding="async" alt="Fotografia de desporto"></figure>
-<figure class="ph" data-cat="desporto" style="--ar:1.5013"><img src="images/desporto-049.webp" loading="lazy" decoding="async" alt="Fotografia de desporto"></figure>
-<figure class="ph" data-cat="desporto" style="--ar:1.5013"><img src="images/desporto-050.webp" loading="lazy" decoding="async" alt="Fotografia de desporto"></figure>
-<figure class="ph" data-cat="desporto" style="--ar:1.5013"><img src="images/desporto-051.webp" loading="lazy" decoding="async" alt="Fotografia de desporto"></figure>
-<figure class="ph" data-cat="desporto" style="--ar:1.0465"><img src="images/desporto-052.webp" loading="lazy" decoding="async" alt="Fotografia de desporto"></figure>
-<figure class="ph" data-cat="desporto" style="--ar:1.5013"><img src="images/desporto-053.webp" loading="lazy" decoding="async" alt="Fotografia de desporto"></figure>
-<figure class="ph" data-cat="paisagens" style="--ar:1.5013"><img src="images/ruaz.webp" loading="lazy" decoding="async" alt="Fotografia de paisagem"></figure>
-<figure class="ph" data-cat="paisagens" style="--ar:1.5013"><img src="images/ruaz01.webp" loading="lazy" decoding="async" alt="Fotografia de paisagem"></figure>
-<figure class="ph" data-cat="paisagens" style="--ar:1.5013"><img src="images/ruaz02.webp" loading="lazy" decoding="async" alt="Fotografia de paisagem"></figure>
-<figure class="ph" data-cat="paisagens" style="--ar:1.5013"><img src="images/ruaz03.webp" loading="lazy" decoding="async" alt="Fotografia de paisagem"></figure>
-<figure class="ph" data-cat="carros" style="--ar:0.6661"><img src="images/carros-058.webp" loading="lazy" decoding="async" alt="Fotografia de carros"></figure>
-<figure class="ph" data-cat="carros" style="--ar:0.6661"><img src="images/carros-059.webp" loading="lazy" decoding="async" alt="Fotografia de carros"></figure>
-<figure class="ph" data-cat="carros" style="--ar:1.5013"><img src="images/carros-060.webp" loading="lazy" decoding="async" alt="Fotografia de carros"></figure>
-<figure class="ph" data-cat="carros" style="--ar:0.6661"><img src="images/carros-061.webp" loading="lazy" decoding="async" alt="Fotografia de carros"></figure>
-<figure class="ph" data-cat="carros" style="--ar:0.5906"><img src="images/carros-062.webp" loading="lazy" decoding="async" alt="Fotografia de carros"></figure>
-<figure class="ph" data-cat="carros" style="--ar:0.7500"><img src="images/carros-063.webp" loading="lazy" decoding="async" alt="Fotografia de carros"></figure>
-<figure class="ph" data-cat="carros" style="--ar:1.3333"><img src="images/carros-064.webp" loading="lazy" decoding="async" alt="Fotografia de carros"></figure>
-<figure class="ph" data-cat="carros" style="--ar:1.3333"><img src="images/carros-065.webp" loading="lazy" decoding="async" alt="Fotografia de carros"></figure>
-<figure class="ph" data-cat="carros" style="--ar:0.6663"><img src="images/carros-066.webp" loading="lazy" decoding="async" alt="Fotografia de carros"></figure>
-<figure class="ph" data-cat="carros" style="--ar:0.6661"><img src="images/carros-068.webp" loading="lazy" decoding="async" alt="Fotografia de carros"></figure>
-<figure class="ph" data-cat="carros" style="--ar:0.6661"><img src="images/carros-069.webp" loading="lazy" decoding="async" alt="Fotografia de carros"></figure>
-<figure class="ph" data-cat="carros" style="--ar:1.5013"><img src="images/carros-070.webp" loading="lazy" decoding="async" alt="Fotografia de carros"></figure>
-<figure class="ph" data-cat="carros" style="--ar:0.6661"><img src="images/carros-071.webp" loading="lazy" decoding="async" alt="Fotografia de carros"></figure>
-<figure class="ph" data-cat="carros" style="--ar:0.6661"><img src="images/carros-072.webp" loading="lazy" decoding="async" alt="Fotografia de carros"></figure>
-<figure class="ph" data-cat="paisagens" style="--ar:1.5013"><img src="images/viagens-073.webp" loading="lazy" decoding="async" alt="Fotografia de paisagem"></figure>
-<figure class="ph" data-cat="paisagens" style="--ar:0.6694"><img src="images/viagens-074.webp" loading="lazy" decoding="async" alt="Fotografia de paisagem"></figure>
-<figure class="ph" data-cat="paisagens" style="--ar:0.7467"><img src="images/viagens-075.webp" loading="lazy" decoding="async" alt="Fotografia de paisagem"></figure>
-<figure class="ph" data-cat="paisagens" style="--ar:1.5013"><img src="images/viagens-076.webp" loading="lazy" decoding="async" alt="Fotografia de paisagem"></figure>
-<figure class="ph" data-cat="paisagens" style="--ar:1.5013"><img src="images/viagens-077.webp" loading="lazy" decoding="async" alt="Fotografia de paisagem"></figure>
-<figure class="ph" data-cat="retratos" style="--ar:1.5000"><img src="images/viagens-078.webp" loading="lazy" decoding="async" alt="Fotografia de retrato"></figure>
-<figure class="ph" data-cat="paisagens" style="--ar:1.5000"><img src="images/viagens-079.webp" loading="lazy" decoding="async" alt="Fotografia de paisagem"></figure>
-<figure class="ph" data-cat="paisagens" style="--ar:1.5000"><img src="images/viagens-080.webp" loading="lazy" decoding="async" alt="Fotografia de paisagem"></figure>
-<figure class="ph" data-cat="paisagens" style="--ar:1.5000"><img src="images/viagens-081.webp" loading="lazy" decoding="async" alt="Fotografia de paisagem"></figure>
-<figure class="ph" data-cat="paisagens" style="--ar:1.5000"><img src="images/viagens-082.webp" loading="lazy" decoding="async" alt="Fotografia de paisagem"></figure>
-<figure class="ph" data-cat="paisagens" style="--ar:1.5000"><img src="images/viagens-083.webp" loading="lazy" decoding="async" alt="Fotografia de paisagem"></figure>
-<figure class="ph" data-cat="paisagens" style="--ar:1.5013"><img src="images/viagens-084.webp" loading="lazy" decoding="async" alt="Fotografia de paisagem"></figure>
-<figure class="ph" data-cat="paisagens" style="--ar:0.6661"><img src="images/viagens-085.webp" loading="lazy" decoding="async" alt="Fotografia de paisagem"></figure>
-<figure class="ph" data-cat="eventos" style="--ar:1.5013"><img src="images/eventos-086.webp" loading="lazy" decoding="async" alt="Fotografia de evento"></figure>
-<figure class="ph" data-cat="eventos" style="--ar:1.5013"><img src="images/eventos-087.webp" loading="lazy" decoding="async" alt="Fotografia de evento"></figure>
-<figure class="ph" data-cat="eventos" style="--ar:1.5013"><img src="images/eventos-088.webp" loading="lazy" decoding="async" alt="Fotografia de evento"></figure>
-<figure class="ph" data-cat="eventos" style="--ar:1.5013"><img src="images/eventos-089.webp" loading="lazy" decoding="async" alt="Fotografia de evento"></figure>
-<figure class="ph" data-cat="eventos" style="--ar:1.5013"><img src="images/eventos-090.webp" loading="lazy" decoding="async" alt="Fotografia de evento"></figure>
-<figure class="ph" data-cat="paisagens" style="--ar:1.5000"><img src="images/paisagenz.webp" loading="lazy" decoding="async" alt="Fotografia de paisagem"></figure>
-<figure class="ph" data-cat="paisagens" style="--ar:1.5000"><img src="images/paisagenz02.webp" loading="lazy" decoding="async" alt="Fotografia de paisagem"></figure>
-<figure class="ph" data-cat="retratos" style="--ar:1.5000"><img src="images/paisagenz03.webp" loading="lazy" decoding="async" alt="Fotografia de retrato"></figure>
-<figure class="ph" data-cat="desporto" style="--ar:1.5000"><img src="images/deporte.webp" loading="lazy" decoding="async" alt="Fotografia de desporto"></figure>
-<figure class="ph" data-cat="desporto" style="--ar:1.5000"><img src="images/deporte02.webp" loading="lazy" decoding="async" alt="Fotografia de desporto"></figure>
-<figure class="ph" data-cat="desporto" style="--ar:1.5000"><img src="images/deporte03.webp" loading="lazy" decoding="async" alt="Fotografia de desporto"></figure>
-<figure class="ph" data-cat="eventos" style="--ar:1.5000"><img src="images/eventoz.webp" loading="lazy" decoding="async" alt="Fotografia de evento"></figure>
-<figure class="ph" data-cat="eventos" style="--ar:1.5000"><img src="images/eventoz02.webp" loading="lazy" decoding="async" alt="Fotografia de evento"></figure>
-<figure class="ph" data-cat="eventos" style="--ar:1.5000"><img src="images/eventoz03.webp" loading="lazy" decoding="async" alt="Fotografia de evento"></figure>
-<figure class="ph" data-cat="eventos" style="--ar:1.5000"><img src="images/carnaval-016.webp" loading="lazy" decoding="async" alt="Fotografia de evento"></figure>
-<figure class="ph" data-cat="eventos" style="--ar:1.5000"><img src="images/carnaval-028.webp" loading="lazy" decoding="async" alt="Fotografia de evento"></figure>
-<figure class="ph" data-cat="eventos" style="--ar:1.5000"><img src="images/carnaval-039.webp" loading="lazy" decoding="async" alt="Fotografia de evento"></figure>
-<figure class="ph" data-cat="paisagens" style="--ar:1.5013"><img src="images/pai.webp" loading="lazy" decoding="async" alt="Fotografia de paisagem"></figure>
-<figure class="ph" data-cat="paisagens" style="--ar:1.5013"><img src="images/pai02.webp" loading="lazy" decoding="async" alt="Fotografia de paisagem"></figure>
-<figure class="ph" data-cat="paisagens" style="--ar:1.5013"><img src="images/pai03.webp" loading="lazy" decoding="async" alt="Fotografia de paisagem"></figure>
-<figure class="ph" data-cat="paisagens" style="--ar:1.5013"><img src="images/pai04.webp" loading="lazy" decoding="async" alt="Fotografia de paisagem"></figure>
-<figure class="ph" data-cat="retratos" style="--ar:0.6661"><img src="images/re.webp" loading="lazy" decoding="async" alt="Fotografia de retrato"></figure>
-<figure class="ph" data-cat="retratos" style="--ar:0.6661"><img src="images/re02.webp" loading="lazy" decoding="async" alt="Fotografia de retrato"></figure>
-<figure class="ph" data-cat="retratos" style="--ar:0.6661"><img src="images/re03.webp" loading="lazy" decoding="async" alt="Fotografia de retrato"></figure>
-<figure class="ph" data-cat="retratos" style="--ar:0.6661"><img src="images/re05.webp" loading="lazy" decoding="async" alt="Fotografia de retrato"></figure>
-<figure class="ph" data-cat="retratos" style="--ar:0.6661"><img src="images/re06.webp" loading="lazy" decoding="async" alt="Fotografia de retrato"></figure>
-  <figure class="ph" data-cat="produtos" style="--ar:1.5000"><img src="images/produto.webp" loading="lazy" decoding="async" alt="Fotografia de produto"></figure>
-<figure class="ph" data-cat="produtos" style="--ar:1.5000"><img src="images/produto01.webp" loading="lazy" decoding="async" alt="Fotografia de produto"></figure>
-<figure class="ph" data-cat="produtos" style="--ar:1.5000"><img src="images/produto02.webp" loading="lazy" decoding="async" alt="Fotografia de produto"></figure>
-<figure class="ph" data-cat="produtos" style="--ar:1.5000"><img src="images/produto03.webp" loading="lazy" decoding="async" alt="Fotografia de produto"></figure>
-<figure class="ph" data-cat="produtos" style="--ar:1.5000"><img src="images/produto04.webp" loading="lazy" decoding="async" alt="Fotografia de produto"></figure>
-<figure class="ph" data-cat="produtos" style="--ar:1.5000"><img src="images/produto05.webp" loading="lazy" decoding="async" alt="Fotografia de produto"></figure>
-<figure class="ph" data-cat="produtos" style="--ar:1.5000"><img src="images/produto06.webp" loading="lazy" decoding="async" alt="Fotografia de produto"></figure>
-<figure class="ph" data-cat="produtos" style="--ar:1.5000"><img src="images/produto07.webp" loading="lazy" decoding="async" alt="Fotografia de produto"></figure>
-<figure class="ph" data-cat="produtos" style="--ar:1.5000"><img src="images/produto08.webp" loading="lazy" decoding="async" alt="Fotografia de produto"></figure>
+<figure class="ph" data-cat="retratos" style="--ar:1.5013"><img src="images/retratos-001.webp" loading="lazy" decoding="async" alt="Retrato em estúdio, luz natural, Vila do Conde"></figure>
+<figure class="ph" data-cat="retratos" style="--ar:0.6661"><img src="images/retratos-002.webp" loading="lazy" decoding="async" alt="Retrato individual em plano fechado"></figure>
+<figure class="ph" data-cat="retratos" style="--ar:0.6661"><img src="images/retratos-003.webp" loading="lazy" decoding="async" alt="Retrato de estúdio com fundo neutro"></figure>
+<figure class="ph" data-cat="retratos" style="--ar:0.6661"><img src="images/retratos-004.webp" loading="lazy" decoding="async" alt="Retrato em ambiente exterior"></figure>
+<figure class="ph" data-cat="retratos" style="--ar:0.6667"><img src="images/retratos-005.webp" loading="lazy" decoding="async" alt="Retrato com luz lateral"></figure>
+<figure class="ph" data-cat="retratos" style="--ar:1.5013"><img src="images/retratos-006.webp" loading="lazy" decoding="async" alt="Retrato em plano largo"></figure>
+<figure class="ph" data-cat="retratos" style="--ar:0.6661"><img src="images/retratos-007.webp" loading="lazy" decoding="async" alt="Retrato casual em exterior"></figure>
+<figure class="ph" data-cat="retratos" style="--ar:0.6661"><img src="images/retratos-008.webp" loading="lazy" decoding="async" alt="Retrato com expressão espontânea"></figure>
+<figure class="ph" data-cat="retratos" style="--ar:1.5013"><img src="images/retratos-010.webp" loading="lazy" decoding="async" alt="Retrato em enquadramento horizontal"></figure>
+<figure class="ph" data-cat="retratos" style="--ar:1.5013"><img src="images/retratos-011.webp" loading="lazy" decoding="async" alt="Retrato com fundo desfocado"></figure>
+<figure class="ph" data-cat="retratos" style="--ar:0.6661"><img src="images/retratos-012.webp" loading="lazy" decoding="async" alt="Retrato de perfil"></figure>
+<figure class="ph" data-cat="paisagens" style="--ar:1.5013"><img src="images/rua-013.webp" loading="lazy" decoding="async" alt="Paisagem urbana ao entardecer"></figure>
+<figure class="ph" data-cat="paisagens" style="--ar:1.5013"><img src="images/rua-014.webp" loading="lazy" decoding="async" alt="Rua com luz dourada"></figure>
+<figure class="ph" data-cat="paisagens" style="--ar:1.5013"><img src="images/rua-015.webp" loading="lazy" decoding="async" alt="Vista de rua ao pôr do sol"></figure>
+<figure class="ph" data-cat="paisagens" style="--ar:1.5013"><img src="images/rua-016.webp" loading="lazy" decoding="async" alt="Paisagem de rua portuguesa"></figure>
+<figure class="ph" data-cat="paisagens" style="--ar:0.5883"><img src="images/rua-017.webp" loading="lazy" decoding="async" alt="Edifício histórico em plano vertical"></figure>
+<figure class="ph" data-cat="paisagens" style="--ar:0.6572"><img src="images/rua-018.webp" loading="lazy" decoding="async" alt="Fachada com detalhe arquitetónico"></figure>
+<figure class="ph" data-cat="paisagens" style="--ar:0.6289"><img src="images/rua-019.webp" loading="lazy" decoding="async" alt="Arquitetura urbana em contraluz"></figure>
+<figure class="ph" data-cat="paisagens" style="--ar:0.6422"><img src="images/rua-020.webp" loading="lazy" decoding="async" alt="Rua estreita com sombras marcadas"></figure>
+<figure class="ph" data-cat="paisagens" style="--ar:0.6661"><img src="images/rua-021.webp" loading="lazy" decoding="async" alt="Vista de rua com pessoas"></figure>
+<figure class="ph" data-cat="paisagens" style="--ar:0.6306"><img src="images/rua-022.webp" loading="lazy" decoding="async" alt="Paisagem urbana em plano vertical"></figure>
+<figure class="ph" data-cat="paisagens" style="--ar:1.5803"><img src="images/rua-023.webp" loading="lazy" decoding="async" alt="Panorâmica de rua"></figure>
+<figure class="ph" data-cat="paisagens" style="--ar:0.6961"><img src="images/rua-024.webp" loading="lazy" decoding="async" alt="Rua com reflexo de luz"></figure>
+<figure class="ph" data-cat="paisagens" style="--ar:1.5000"><img src="images/rua-025.webp" loading="lazy" decoding="async" alt="Paisagem de cidade portuguesa"></figure>
+<figure class="ph" data-cat="paisagens" style="--ar:1.5000"><img src="images/rua-026.webp" loading="lazy" decoding="async" alt="Rua ao entardecer com sombras longas"></figure>
+<figure class="ph" data-cat="paisagens" style="--ar:1.5000"><img src="images/rua-027.webp" loading="lazy" decoding="async" alt="Vista panorâmica urbana"></figure>
+<figure class="ph" data-cat="paisagens" style="--ar:1.5000"><img src="images/rua-028.webp" loading="lazy" decoding="async" alt="Rua com arquitetura tradicional"></figure>
+<figure class="ph" data-cat="paisagens" style="--ar:1.5000"><img src="images/rua-029.webp" loading="lazy" decoding="async" alt="Paisagem urbana em luz suave"></figure>
+<figure class="ph" data-cat="paisagens" style="--ar:1.5000"><img src="images/rua-030.webp" loading="lazy" decoding="async" alt="Rua com movimento de pessoas"></figure>
+<figure class="ph" data-cat="desporto" style="--ar:1.5013"><img src="images/desporto-031.webp" loading="lazy" decoding="async" alt="Ação em jogo de futsal"></figure>
+<figure class="ph" data-cat="desporto" style="--ar:1.5013"><img src="images/desporto-032.webp" loading="lazy" decoding="async" alt="Jogador em movimento durante jogo"></figure>
+<figure class="ph" data-cat="desporto" style="--ar:1.5013"><img src="images/desporto-033.webp" loading="lazy" decoding="async" alt="Lance de jogo captado em ação"></figure>
+<figure class="ph" data-cat="desporto" style="--ar:1.5013"><img src="images/desporto-034.webp" loading="lazy" decoding="async" alt="Momento de disputa em campo"></figure>
+<figure class="ph" data-cat="desporto" style="--ar:1.5013"><img src="images/desporto-035.webp" loading="lazy" decoding="async" alt="Atleta em pleno esforço"></figure>
+<figure class="ph" data-cat="desporto" style="--ar:1.5887"><img src="images/desporto-036.webp" loading="lazy" decoding="async" alt="Vista alargada de campo desportivo"></figure>
+<figure class="ph" data-cat="desporto" style="--ar:1.5013"><img src="images/desporto-037.webp" loading="lazy" decoding="async" alt="Jogador a driblar adversário"></figure>
+<figure class="ph" data-cat="desporto" style="--ar:1.5013"><img src="images/desporto-038.webp" loading="lazy" decoding="async" alt="Golo comemorado em jogo"></figure>
+<figure class="ph" data-cat="desporto" style="--ar:1.5013"><img src="images/desporto-039.webp" loading="lazy" decoding="async" alt="Guarda-redes em ação de defesa"></figure>
+<figure class="ph" data-cat="desporto" style="--ar:1.5013"><img src="images/desporto-040.webp" loading="lazy" decoding="async" alt="Disputa de bola entre jogadores"></figure>
+<figure class="ph" data-cat="desporto" style="--ar:1.5013"><img src="images/desporto-041.webp" loading="lazy" decoding="async" alt="Jogador em corrida durante partida"></figure>
+<figure class="ph" data-cat="desporto" style="--ar:1.5013"><img src="images/desporto-042.webp" loading="lazy" decoding="async" alt="Momento de tensão em jogo"></figure>
+<figure class="ph" data-cat="desporto" style="--ar:1.5013"><img src="images/desporto-043.webp" loading="lazy" decoding="async" alt="Passe decisivo captado em ação"></figure>
+<figure class="ph" data-cat="desporto" style="--ar:1.5013"><img src="images/desporto-044.webp" loading="lazy" decoding="async" alt="Salto de jogador durante o jogo"></figure>
+<figure class="ph" data-cat="desporto" style="--ar:1.5013"><img src="images/desporto-045.webp" loading="lazy" decoding="async" alt="Reação de equipa em campo"></figure>
+<figure class="ph" data-cat="desporto" style="--ar:1.5013"><img src="images/desporto-046.webp" loading="lazy" decoding="async" alt="Jogo visto em ângulo baixo"></figure>
+<figure class="ph" data-cat="desporto" style="--ar:1.5013"><img src="images/desporto-047.webp" loading="lazy" decoding="async" alt="Jogador concentrado antes do lance"></figure>
+<figure class="ph" data-cat="desporto" style="--ar:1.5013"><img src="images/desporto-048.webp" loading="lazy" decoding="async" alt="Ação rápida junto à baliza"></figure>
+<figure class="ph" data-cat="desporto" style="--ar:1.5013"><img src="images/desporto-049.webp" loading="lazy" decoding="async" alt="Jogo captado em plano largo"></figure>
+<figure class="ph" data-cat="desporto" style="--ar:1.5013"><img src="images/desporto-050.webp" loading="lazy" decoding="async" alt="Movimento de bola em campo"></figure>
+<figure class="ph" data-cat="desporto" style="--ar:1.5013"><img src="images/desporto-051.webp" loading="lazy" decoding="async" alt="Disputa aérea entre jogadores"></figure>
+<figure class="ph" data-cat="desporto" style="--ar:1.0465"><img src="images/desporto-052.webp" loading="lazy" decoding="async" alt="Retrato de atleta durante pausa"></figure>
+<figure class="ph" data-cat="desporto" style="--ar:1.5013"><img src="images/desporto-053.webp" loading="lazy" decoding="async" alt="Final de jogada captada em ação"></figure>
+<figure class="ph" data-cat="paisagens" style="--ar:1.5013"><img src="images/ruaz.webp" loading="lazy" decoding="async" alt="Paisagem de rua ao anoitecer"></figure>
+<figure class="ph" data-cat="paisagens" style="--ar:1.5013"><img src="images/ruaz01.webp" loading="lazy" decoding="async" alt="Vista urbana com luz artificial"></figure>
+<figure class="ph" data-cat="paisagens" style="--ar:1.5013"><img src="images/ruaz02.webp" loading="lazy" decoding="async" alt="Paisagem noturna de rua"></figure>
+<figure class="ph" data-cat="paisagens" style="--ar:1.5013"><img src="images/ruaz03.webp" loading="lazy" decoding="async" alt="Paisagem urbana, imagem de destaque"></figure>
+<figure class="ph" data-cat="carros" style="--ar:0.6661"><img src="images/carros-058.webp" loading="lazy" decoding="async" alt="Carro fotografado em plano frontal"></figure>
+<figure class="ph" data-cat="carros" style="--ar:0.6661"><img src="images/carros-059.webp" loading="lazy" decoding="async" alt="Detalhe de carro em close-up"></figure>
+<figure class="ph" data-cat="carros" style="--ar:1.5013"><img src="images/carros-060.webp" loading="lazy" decoding="async" alt="Carro fotografado em plano lateral"></figure>
+<figure class="ph" data-cat="carros" style="--ar:0.6661"><img src="images/carros-061.webp" loading="lazy" decoding="async" alt="Automóvel em ambiente exterior"></figure>
+<figure class="ph" data-cat="carros" style="--ar:0.5906"><img src="images/carros-062.webp" loading="lazy" decoding="async" alt="Carro em enquadramento vertical"></figure>
+<figure class="ph" data-cat="carros" style="--ar:0.7500"><img src="images/carros-063.webp" loading="lazy" decoding="async" alt="Detalhe de jante e roda"></figure>
+<figure class="ph" data-cat="carros" style="--ar:1.3333"><img src="images/carros-064.webp" loading="lazy" decoding="async" alt="Interior de automóvel"></figure>
+<figure class="ph" data-cat="carros" style="--ar:1.3333"><img src="images/carros-065.webp" loading="lazy" decoding="async" alt="Detalhe de painel de instrumentos"></figure>
+<figure class="ph" data-cat="carros" style="--ar:0.6663"><img src="images/carros-066.webp" loading="lazy" decoding="async" alt="Carro fotografado ao entardecer"></figure>
+<figure class="ph" data-cat="carros" style="--ar:0.6661"><img src="images/carros-068.webp" loading="lazy" decoding="async" alt="Automóvel em cenário urbano"></figure>
+<figure class="ph" data-cat="carros" style="--ar:0.6661"><img src="images/carros-069.webp" loading="lazy" decoding="async" alt="Carro em plano de três quartos"></figure>
+<figure class="ph" data-cat="carros" style="--ar:1.5013"><img src="images/carros-070.webp" loading="lazy" decoding="async" alt="Carro fotografado em movimento"></figure>
+<figure class="ph" data-cat="carros" style="--ar:0.6661"><img src="images/carros-071.webp" loading="lazy" decoding="async" alt="Detalhe de farol e grelha"></figure>
+<figure class="ph" data-cat="carros" style="--ar:0.6661"><img src="images/carros-072.webp" loading="lazy" decoding="async" alt="Automóvel em plano traseiro"></figure>
+<figure class="ph" data-cat="paisagens" style="--ar:1.5013"><img src="images/viagens-073.webp" loading="lazy" decoding="async" alt="Paisagem de viagem, vista alargada"></figure>
+<figure class="ph" data-cat="paisagens" style="--ar:0.6694"><img src="images/viagens-074.webp" loading="lazy" decoding="async" alt="Paisagem de viagem em vertical"></figure>
+<figure class="ph" data-cat="paisagens" style="--ar:0.7467"><img src="images/viagens-075.webp" loading="lazy" decoding="async" alt="Vista de viagem com horizonte"></figure>
+<figure class="ph" data-cat="paisagens" style="--ar:1.5013"><img src="images/viagens-076.webp" loading="lazy" decoding="async" alt="Paisagem natural durante viagem"></figure>
+<figure class="ph" data-cat="paisagens" style="--ar:1.5013"><img src="images/viagens-077.webp" loading="lazy" decoding="async" alt="Vista panorâmica de viagem"></figure>
+<figure class="ph" data-cat="retratos" style="--ar:1.5000"><img src="images/viagens-078.webp" loading="lazy" decoding="async" alt="Retrato captado durante viagem"></figure>
+<figure class="ph" data-cat="paisagens" style="--ar:1.5000"><img src="images/viagens-079.webp" loading="lazy" decoding="async" alt="Paisagem costeira de viagem"></figure>
+<figure class="ph" data-cat="paisagens" style="--ar:1.5000"><img src="images/viagens-080.webp" loading="lazy" decoding="async" alt="Vista de montanha em viagem"></figure>
+<figure class="ph" data-cat="paisagens" style="--ar:1.5000"><img src="images/viagens-081.webp" loading="lazy" decoding="async" alt="Paisagem rural em viagem"></figure>
+<figure class="ph" data-cat="paisagens" style="--ar:1.5000"><img src="images/viagens-082.webp" loading="lazy" decoding="async" alt="Vista de estrada durante viagem"></figure>
+<figure class="ph" data-cat="paisagens" style="--ar:1.5000"><img src="images/viagens-083.webp" loading="lazy" decoding="async" alt="Paisagem ao pôr do sol em viagem"></figure>
+<figure class="ph" data-cat="paisagens" style="--ar:1.5013"><img src="images/viagens-084.webp" loading="lazy" decoding="async" alt="Vista aérea de paisagem de viagem"></figure>
+<figure class="ph" data-cat="paisagens" style="--ar:0.6661"><img src="images/viagens-085.webp" loading="lazy" decoding="async" alt="Paisagem vertical de viagem"></figure>
+<figure class="ph" data-cat="eventos" style="--ar:1.5013"><img src="images/eventos-086.webp" loading="lazy" decoding="async" alt="Momento captado durante evento"></figure>
+<figure class="ph" data-cat="eventos" style="--ar:1.5013"><img src="images/eventos-087.webp" loading="lazy" decoding="async" alt="Convidados em evento"></figure>
+<figure class="ph" data-cat="eventos" style="--ar:1.5013"><img src="images/eventos-088.webp" loading="lazy" decoding="async" alt="Ambiente geral de evento"></figure>
+<figure class="ph" data-cat="eventos" style="--ar:1.5013"><img src="images/eventos-089.webp" loading="lazy" decoding="async" alt="Detalhe captado em evento"></figure>
+<figure class="ph" data-cat="eventos" style="--ar:1.5013"><img src="images/eventos-090.webp" loading="lazy" decoding="async" alt="Momento de celebração em evento"></figure>
+<figure class="ph" data-cat="paisagens" style="--ar:1.5000"><img src="images/paisagenz.webp" loading="lazy" decoding="async" alt="Paisagem natural portuguesa"></figure>
+<figure class="ph" data-cat="paisagens" style="--ar:1.5000"><img src="images/paisagenz02.webp" loading="lazy" decoding="async" alt="Vista de paisagem ao amanhecer"></figure>
+<figure class="ph" data-cat="retratos" style="--ar:1.5000"><img src="images/paisagenz03.webp" loading="lazy" decoding="async" alt="Retrato em ambiente natural"></figure>
+<figure class="ph" data-cat="desporto" style="--ar:1.5000"><img src="images/deporte.webp" loading="lazy" decoding="async" alt="Ação desportiva captada em jogo"></figure>
+<figure class="ph" data-cat="desporto" style="--ar:1.5000"><img src="images/deporte02.webp" loading="lazy" decoding="async" alt="Jogador em movimento no campo"></figure>
+<figure class="ph" data-cat="desporto" style="--ar:1.5000"><img src="images/deporte03.webp" loading="lazy" decoding="async" alt="Lance de jogo em plano aproximado"></figure>
+<figure class="ph" data-cat="eventos" style="--ar:1.5000"><img src="images/eventoz.webp" loading="lazy" decoding="async" alt="Registo de evento social"></figure>
+<figure class="ph" data-cat="eventos" style="--ar:1.5000"><img src="images/eventoz02.webp" loading="lazy" decoding="async" alt="Momento de convívio em evento"></figure>
+<figure class="ph" data-cat="eventos" style="--ar:1.5000"><img src="images/eventoz03.webp" loading="lazy" decoding="async" alt="Detalhe de decoração de evento"></figure>
+<figure class="ph" data-cat="eventos" style="--ar:1.5000"><img src="images/carnaval-016.webp" loading="lazy" decoding="async" alt="Desfile de Carnaval, cor e movimento"></figure>
+<figure class="ph" data-cat="eventos" style="--ar:1.5000"><img src="images/carnaval-028.webp" loading="lazy" decoding="async" alt="Participantes de Carnaval em festejo"></figure>
+<figure class="ph" data-cat="eventos" style="--ar:1.5000"><img src="images/carnaval-039.webp" loading="lazy" decoding="async" alt="Cortejo de Carnaval captado em ação"></figure>
+<figure class="ph" data-cat="paisagens" style="--ar:1.5013"><img src="images/pai.webp" loading="lazy" decoding="async" alt="Paisagem ao entardecer"></figure>
+<figure class="ph" data-cat="paisagens" style="--ar:1.5013"><img src="images/pai02.webp" loading="lazy" decoding="async" alt="Paisagem com nuvens dramáticas"></figure>
+<figure class="ph" data-cat="paisagens" style="--ar:1.5013"><img src="images/pai03.webp" loading="lazy" decoding="async" alt="Paisagem costeira portuguesa"></figure>
+<figure class="ph" data-cat="paisagens" style="--ar:1.5013"><img src="images/pai04.webp" loading="lazy" decoding="async" alt="Paisagem rural ao entardecer"></figure>
+<figure class="ph" data-cat="retratos" style="--ar:0.6661"><img src="images/re.webp" loading="lazy" decoding="async" alt="Retrato de estúdio, luz suave"></figure>
+<figure class="ph" data-cat="retratos" style="--ar:0.6661"><img src="images/re02.webp" loading="lazy" decoding="async" alt="Retrato com expressão natural"></figure>
+<figure class="ph" data-cat="retratos" style="--ar:0.6661"><img src="images/re03.webp" loading="lazy" decoding="async" alt="Retrato em plano fechado, estúdio"></figure>
+<figure class="ph" data-cat="retratos" style="--ar:0.6661"><img src="images/re05.webp" loading="lazy" decoding="async" alt="Retrato com contraste marcado"></figure>
+<figure class="ph" data-cat="retratos" style="--ar:0.6661"><img src="images/re06.webp" loading="lazy" decoding="async" alt="Retrato final de sessão em estúdio"></figure>
+  <figure class="ph" data-cat="produtos" style="--ar:1.5000"><img src="images/produto.webp" loading="lazy" decoding="async" alt="Fotografia de produto em fundo neutro"></figure>
+<figure class="ph" data-cat="produtos" style="--ar:1.5000"><img src="images/produto01.webp" loading="lazy" decoding="async" alt="Produto fotografado em estúdio"></figure>
+<figure class="ph" data-cat="produtos" style="--ar:1.5000"><img src="images/produto02.webp" loading="lazy" decoding="async" alt="Detalhe de produto em close-up"></figure>
+<figure class="ph" data-cat="produtos" style="--ar:1.5000"><img src="images/produto03.webp" loading="lazy" decoding="async" alt="Produto com iluminação de estúdio"></figure>
+<figure class="ph" data-cat="produtos" style="--ar:1.5000"><img src="images/produto04.webp" loading="lazy" decoding="async" alt="Fotografia comercial de produto"></figure>
+<figure class="ph" data-cat="produtos" style="--ar:1.5000"><img src="images/produto05.webp" loading="lazy" decoding="async" alt="Produto em plano angular"></figure>
+<figure class="ph" data-cat="produtos" style="--ar:1.5000"><img src="images/produto06.webp" loading="lazy" decoding="async" alt="Produto fotografado para catálogo"></figure>
+<figure class="ph" data-cat="produtos" style="--ar:1.5000"><img src="images/produto07.webp" loading="lazy" decoding="async" alt="Detalhe de textura de produto"></figure>
+<figure class="ph" data-cat="produtos" style="--ar:1.5000"><img src="images/produto08.webp" loading="lazy" decoding="async" alt="Produto em composição final"></figure>
 </main>
+
+<!-- ================= CASE STUDIES ================= -->
+<section class="cases" id="projetos">
+  <div class="cases-head">
+    <span class="hero-eyebrow">Projetos</span>
+    <h2>Algumas sessões, <b>contadas por inteiro.</b></h2>
+    <p>Em vez de fotos soltas, aqui fica o contexto de três sessões
+    recentes — o que foi pedido, como decorreu e o resultado final.</p>
+  </div>
+
+  <div class="case">
+    <div class="case-photos">
+      <img class="tall" src="images/desporto-031.webp" loading="lazy" decoding="async" alt="Lance principal do jogo de futsal">
+      <img src="images/desporto-038.webp" loading="lazy" decoding="async" alt="Golo comemorado durante o jogo">
+      <img src="images/desporto-044.webp" loading="lazy" decoding="async" alt="Salto de jogador em ação">
+      <img src="images/desporto-039.webp" loading="lazy" decoding="async" alt="Defesa do guarda-redes">
+      <img src="images/desporto-052.webp" loading="lazy" decoding="async" alt="Retrato de atleta após o jogo">
+    </div>
+    <div class="case-text">
+      <span class="hero-eyebrow">Desporto · Jogo de futsal</span>
+      <h3>Cobertura de jogo de futsal</h3>
+      <p>Acompanhamento de um jogo do início ao fim, com foco nos momentos
+      de maior intensidade — remates, defesas e celebrações. O desafio
+      aqui é antecipar a jogada e estar sempre no ângulo certo, sem
+      interromper o ritmo do jogo.</p>
+    </div>
+  </div>
+
+  <div class="case reverse">
+    <div class="case-photos">
+      <img class="tall" src="images/eventos-086.webp" loading="lazy" decoding="async" alt="Momento principal da primeira comunhão">
+      <img src="images/eventos-087.webp" loading="lazy" decoding="async" alt="Convidados durante a celebração">
+      <img src="images/eventos-088.webp" loading="lazy" decoding="async" alt="Ambiente geral da festa">
+      <img src="images/eventos-089.webp" loading="lazy" decoding="async" alt="Detalhe da decoração da festa">
+      <img src="images/eventos-090.webp" loading="lazy" decoding="async" alt="Momento de celebração em família">
+    </div>
+    <div class="case-text">
+      <span class="hero-eyebrow">Eventos · Primeira Comunhão</span>
+      <h3>Primeira Comunhão</h3>
+      <p>Cobertura de um dia em família, do momento na igreja à festa que se
+      seguiu. O foco esteve nos momentos genuínos — a cerimónia, os
+      convívios e os detalhes que tornam o dia único — entregues como um
+      registo completo para a família guardar.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PRICING ================= -->
+<section class="pricing" id="precos">
+  <div class="pricing-head">
+    <span class="hero-eyebrow">Investimento</span>
+    <h2>Valores <b>a partir de.</b></h2>
+    <p>Cada sessão é diferente, por isso os valores abaixo são um ponto de
+    partida — o orçamento final depende da duração, do local e do número
+    de fotos editadas. Envia-me os detalhes e envio um orçamento fechado.</p>
+  </div>
+  <div class="pricing-grid">
+    <div class="price-card">
+      <h3>Retratos</h3>
+      <div class="price">60€ <span>/ sessão</span></div>
+      <p>Sessão individual em estúdio ou exterior, com fotos editadas incluídas.</p>
+    </div>
+    <div class="price-card">
+      <h3>Eventos</h3>
+      <div class="price">150€ <span>/ evento</span></div>
+      <p>Cobertura de eventos e celebrações, com entrega digital de fotos selecionadas.</p>
+    </div>
+    <div class="price-card">
+      <h3>Carros &amp; Produtos</h3>
+      <div class="price">80€ <span>/ sessão</span></div>
+      <p>Sessão dedicada com planos gerais e detalhes, pronta para venda ou redes sociais.</p>
+    </div>
+  </div>
+  <p class="pricing-note">Desporto e paisagens são orçamentados caso a caso, consoante a deslocação e a duração. Fala comigo para um valor exato.</p>
+</section>
+
+<!-- ================= TESTIMONIALS ================= -->
+<section class="testimonials" id="testemunhos">
+  <div class="testimonials-head">
+    <span class="hero-eyebrow">Testemunhos</span>
+    <h2>O que dizem <b>quem já trabalhou comigo.</b></h2>
+  </div>
+  <div class="testi-grid">
+    <div class="testi-card">
+      <p class="testi-quote">O Ricardo pôs-me à vontade desde o primeiro minuto. As fotos ficaram muito naturais, nada forçadas.</p>
+      <div class="testi-author"><b>Nome do cliente</b><span>Sessão de retrato</span></div>
+    </div>
+    <div class="testi-card">
+      <p class="testi-quote">Contratámos para o nosso evento e o resultado superou as expectativas. Entrega rápida e profissional.</p>
+      <div class="testi-author"><b>Nome do cliente</b><span>Evento</span></div>
+    </div>
+    <div class="testi-card">
+      <p class="testi-quote">Sessão do carro ficou incrível, exatamente o que precisava para o anúncio de venda. Recomendo.</p>
+      <div class="testi-author"><b>Nome do cliente</b><span>Sessão de carro</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FAQ ================= -->
+<section class="faq" id="faq">
+  <div class="faq-head">
+    <span class="hero-eyebrow">Perguntas frequentes</span>
+    <h2>Antes de <b>me escreveres.</b></h2>
+  </div>
+  <div class="faq-item">
+    <button class="faq-q"><span>Quanto tempo demoram as fotos a ficar prontas?</span><span class="plus">+</span></button>
+    <div class="faq-a"><p>Normalmente entre 5 a 10 dias úteis após a sessão, dependendo da quantidade de fotos e da altura do ano. Para eventos com prazo urgente, combina-se antecipadamente.</p></div>
+  </div>
+  <div class="faq-item">
+    <button class="faq-q"><span>Viajas para fora do Porto?</span><span class="plus">+</span></button>
+    <div class="faq-a"><p>Sim, trabalho por todo o Portugal. Para deslocações fora da zona de Vila do Conde e Porto pode haver um custo adicional de deslocação, incluído no orçamento.</p></div>
+  </div>
+  <div class="faq-item">
+    <button class="faq-q"><span>Como funciona o pagamento?</span><span class="plus">+</span></button>
+    <div class="faq-a"><p>Normalmente um sinal na marcação e o restante na entrega das fotos, por transferência bancária. Os detalhes ficam combinados antes da sessão.</p></div>
+  </div>
+  <div class="faq-item">
+    <button class="faq-q"><span>Quantas fotos recebo no final?</span><span class="plus">+</span></button>
+    <div class="faq-a"><p>Varia com o tipo de sessão, mas costumo entregar entre 15 a 30 fotos editadas para retratos, e mais para eventos e coberturas desportivas.</p></div>
+  </div>
+</section>
 
 <!-- ================= INSTAGRAM ================= -->
 <section class="insta">
@@ -768,6 +1053,15 @@
 
   // stagger animation delay
   photos.forEach((p,i)=>{ p.style.animationDelay = (i%12 * 0.04) + 's'; });
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-item').forEach(item=>{
+    item.querySelector('.faq-q').addEventListener('click', ()=>{
+      const wasOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
+      if(!wasOpen) item.classList.add('open');
+    });
+  });
 
   // ---------- contact form (envio automático via Web3Forms) ----------
   // O GitHub Pages só serve ficheiros estáticos, não corre servidor próprio.
